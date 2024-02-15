@@ -8,7 +8,9 @@ builds:
     goarch:
       - amd64
       - arm64
-      - armv7
+      - arm
+    goarm:
+      - 7 # For ARMv7
 
 gitea_urls:
   api: https://git.behzadan.ir/api/v1/
