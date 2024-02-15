@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"embed"
 	"flag"
 	"fmt"
 	"os"
@@ -9,7 +10,8 @@ import (
 	"text/template"
 )
 
-const version = "1.0.1"
+//go:embed VERSION
+var versionFile embed.FS
 
 func printHelp() {
 	helpText := fmt.Sprintf(`
@@ -35,7 +37,12 @@ func main() {
 
 	// Handle version flag
 	if *versionFlag {
-		fmt.Println("Version:", version)
+		version, err := versionFile.ReadFile("VERSION")
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error reading version: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("Version:", strings.TrimSpace(string(version)))
 		os.Exit(0)
 	}
 
