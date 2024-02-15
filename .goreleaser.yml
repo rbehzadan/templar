@@ -1,0 +1,35 @@
+project_name: minitmpl
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+# If you want to push the release to GitHub, configure the GitHub section.
+# You'll need a GitHub token with repo access stored in your environment as GITHUB_TOKEN.
+release:
+  # github:
+  #   owner: yourgithubusername
+  #   name: yourrepositoryname
+  gitea:
+    owner: p
+    name: minitmpl
+    url: https://git.behzadan.ir
+    token: "{{ .Env.GITEA_TOKEN }}" # Use the GITEA_TOKEN environment variable
+
+# If you want to create archives (tar.gz for Linux/Darwin, zip for Windows)
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+
