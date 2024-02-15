@@ -44,5 +44,5 @@ This will replace `{{.USER}}` with the value of the `USER` environment variable.
 
 ## License
 
-This project is licensed under its own License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under a custom license - see the [LICENSE](LICENSE) file for details.
 
