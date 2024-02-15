@@ -5,31 +5,22 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      - darwin
-      - windows
     goarch:
       - amd64
       - arm64
+      - arm7
 
 gitea_urls:
   api: https://git.behzadan.ir/api/v1/
 
-# If you want to push the release to GitHub, configure the GitHub section.
-# You'll need a GitHub token with repo access stored in your environment as GITHUB_TOKEN.
+# Need a Gitea token with repo access stored in your environment as GITEA_TOKEN.
 release:
-  # github:
-  #   owner: yourgithubusername
-  #   name: yourrepositoryname
   gitea:
-    owner: p
+    owner: reza
     name: minitmpl
 
-# If you want to create archives (tar.gz for Linux/Darwin, zip for Windows)
 archives:
   - format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
     files:
       - LICENSE
       - README.md
