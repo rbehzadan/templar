@@ -8,6 +8,7 @@ func FuncMap() template.FuncMap {
 		"title":  Title,
 		"split":  Split,
 		"domain": GetDomainName,
+		"genpw":  GenPassword,
 	}
 
 }
