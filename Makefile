@@ -5,12 +5,17 @@ DIST_DIR := dist
 LDFLAGS := "-w -s"
 VVERSION := v$(VERSION)
 
+.PHONY: build
 build:
 	@echo "Building for this platform ..."
 	@mkdir -p $(BUILD_DIR)
 	@CGO_ENABLED=0 go build -ldflags=$(LDFLAGS) -o $(BUILD_DIR)/$(PROJECT_NAME) main.go
 	@echo "Build complete!"
 
+.PHONY: install
+install: build
+	@install build/$(PROJECT_NAME) /usr/local/bin
+	@echo "Binary installed at /usr/local/bin/$(PROJECT_NAME)"
 
 .PHONY: release
 release:

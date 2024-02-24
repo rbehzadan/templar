@@ -8,6 +8,10 @@ import (
 	"os"
 	"strings"
 	"text/template"
+
+	"dario.cat/mergo"
+	"git.behzadan.ir/reza/minitmpl/functions"
+	"github.com/Masterminds/sprig"
 )
 
 //go:embed VERSION
@@ -53,8 +57,11 @@ func main() {
 	}
 
 	// Define custom functions
-	customFunctions := template.FuncMap{
-		"title": func(s string) string { return strings.Title(s) },
+	customFunctions := sprig.FuncMap()
+	err := mergo.Merge(&customFunctions, functions.FuncMap())
+	if err != nil {
+		fmt.Printf("Error merging custom functions: %v\n", err)
+		os.Exit(1)
 	}
 
 	// Create a new template.
