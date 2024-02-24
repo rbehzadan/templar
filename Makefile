@@ -41,8 +41,8 @@ release:
 	fi
 
 	@echo "Set GITEA_TOKEN variable and run goreleaser"
-	@$(eval GITEA_TOKEN=$(shell pass www/behzadan.ir/git/reza/tokens/dt06-goreleaser))
-	@goreleaser release
+	@export GITEA_TOKEN=$(shell pass www/behzadan.ir/git/reza/tokens/dt06-goreleaser) \
+	goreleaser release
 
 
 .PHONY: run
