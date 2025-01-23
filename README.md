@@ -1,48 +1,54 @@
-# MiniTMPL
+# Templar
 
-MiniTMPL is a simple, yet powerful tool designed to render text templates using environment variables. It reads a template from `stdin` and outputs the rendered version to `stdout`, making it an excellent tool for generating configuration files, messages, or any text-based content that requires dynamic data insertion.
+**Templar** is a simple, yet powerful CLI tool for rendering Go text templates, enriched by environment variables. It reads a template from standard input (`stdin`) and outputs the rendered result to standard output (`stdout`). This makes it perfect for dynamically generating configuration files, messages, or any text-based content that needs environment-aware templating.
 
 ## Features
 
-- Reads templates from standard input (`stdin`).
-- Renders templates using environment variables.
-- Supports basic template functions provided by Go's `text/template` package.
+- **Simple Input/Output**: Pipe any text-based template into Templar, and receive fully rendered output.
+- **Environment Variables**: Inserts environment variables into your templates (`{{.VAR}}`).
+- **Built-in Template Functions**:
+  - All functions from [Sprig](https://github.com/Masterminds/sprig).
+  - [Additional custom functions](docs/custom_functions.md) for string manipulation, domain extraction, and more.
 
 ## Getting Started
 
-To use EnvTemplater, clone this repository or download the latest release to your local machine.
+### Installation
 
-### Prerequisites
+You can either:
 
-Ensure you have Go installed on your system. EnvTemplater requires Go 1.14 or higher.
+1. **Download the Latest Release** (Recommended)  
+   Check the [Releases](https://github.com/rbehzadan/templar/releases) page for precompiled binaries.
 
+2. **Build from Source**  
+   Requires [Go 1.14+](https://go.dev/dl/).
 
-### Building form source
+   ```bash
+   git clone https://github.com/rbehzadan/templar.git
+   cd templar
+   go build -o templar
+   ```
 
-First, clone the repository:
+### Usage
 
-```bash
-git clone https://git.behzadan.ir/p/minitmpl.git
-cd minitmpl
-```
-
-Then, build the program:
-
-```bash
-go build -o minitmpl
-```
-
-## Usage
-
-To use EnvTemplater, simply pipe a template into the program and it will output the rendered version:
+Templar reads from `stdin` and writes to `stdout`. Here’s a simple example:
 
 ```bash
-echo "Hello, {{.USER}}" | ./envtemplater
+echo "Hello, {{.USER}}" | ./templar
 ```
 
-This will replace `{{.USER}}` with the value of the `USER` environment variable.
+- The template `Hello, {{.USER}}` is processed.
+- `USER` is replaced by the value of the `USER` environment variable on your system.
+
+**Using Custom Functions**  
+Templar includes functions from [Sprig](https://github.com/Masterminds/sprig) plus [custom ones](CUSTOM_FUNCTIONS.md) like `title`, `split`, `genpw`, and more. For example:
+
+```bash
+echo "Password: {{genpw 16}}" | ./templar
+```
+
+This generates a new 16-character random password each time you run it.
 
 ## License
 
-This project is licensed under a custom license - see the [LICENSE](LICENSE) file for details.
+This project is licensed under a custom license. See the [LICENSE](LICENSE) file for details.
 
