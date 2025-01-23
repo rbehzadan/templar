@@ -20,5 +20,5 @@ release:
 archives:
   - format: tar.gz
     files:
-      - runner.sh
+      - render.sh
 
