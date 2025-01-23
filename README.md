@@ -48,6 +48,29 @@ echo "Password: {{genpw 16}}" | ./templar
 
 This generates a new 16-character random password each time you run it.
 
+## Batch Rendering with `render.sh`
+
+In addition to the basic `templar` usage, this repository includes a helper script named [`render.sh`](./render.sh). It automates the process of rendering **multiple `.tmpl` files**:
+
+1. **Create a `.templar/` directory** in the root of your project.
+2. **Place your template files** (ending in `.tmpl`) inside that directory. For example:
+   ```
+   .templar/
+   └── etc/
+       └── nginx/
+           └── nginx.conf.tmpl
+   ```
+3. **Run `./render.sh`** from the project root:
+   ```bash
+   chmod +x render.sh
+   ./render.sh
+   ```
+   - The script recursively searches `.templar/` for any `.tmpl` files.
+   - For each file, it removes the `.tmpl` extension and writes the rendered output to the corresponding location in your current directory.  
+   - In the above example, `.templar/etc/nginx/nginx.conf.tmpl` is rendered to `etc/nginx/nginx.conf`.
+
+> **Note:** Make sure you have `templar` either in your `$PATH` or in the same directory so that `render.sh` can call it.
+
 ## License
 
 This project is licensed under a custom license. See the [LICENSE](LICENSE) file for details.
