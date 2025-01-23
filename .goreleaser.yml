@@ -1,4 +1,4 @@
-project_name: minitmpl
+project_name: templar
 
 builds:
   - env:
@@ -10,16 +10,12 @@ builds:
       - arm64
       - arm
     goarm:
-      - 7 # For ARMv7
+      - 7
 
-gitea_urls:
-  api: https://git.behzadan.ir/api/v1/
-
-# Need a Gitea token with repo access stored in your environment as GITEA_TOKEN.
 release:
-  gitea:
-    owner: reza
-    name: minitmpl
+  github:
+    owner: rbehzadan
+    name: templar
 
 archives:
   - format: tar.gz
