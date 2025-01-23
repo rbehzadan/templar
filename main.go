@@ -9,9 +9,10 @@ import (
 	"strings"
 	"text/template"
 
+	"templar/functions"
+
 	"dario.cat/mergo"
-	"git.behzadan.ir/reza/minitmpl/functions"
-	"github.com/Masterminds/sprig"
+	"github.com/Masterminds/sprig/v3"
 )
 
 //go:embed VERSION
