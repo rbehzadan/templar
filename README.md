@@ -73,5 +73,5 @@ In addition to the basic `templar` usage, this repository includes a helper scri
 
 ## License
 
-This project is licensed under a custom license. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
